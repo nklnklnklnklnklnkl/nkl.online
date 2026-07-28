@@ -14,6 +14,9 @@ No build step, no dependencies to install. Three files and a CDN script tag.
 | `styles.css` | All styling. Browser-default sans-serif, no webfonts. |
 | `script.js` | are.na fetching, tile layout and rotation, bio recombination. |
 | `CNAME` | Custom domain for GitHub Pages. |
+| `favicon.svg` | Favicon. Drawn as geometry, not text, so it renders the same without your fonts. Inverts in dark mode. |
+| `favicon-16.png`, `favicon-32.png`, `favicon-48.png`, `favicon.ico` | Fallbacks for browsers that ignore SVG icons. Opaque, so they stay legible on dark browser chrome. |
+| `apple-touch-icon.png` | 180×180 home-screen icon for iOS. Must be opaque — iOS renders transparency as black. |
 
 ## Running locally
 
@@ -33,13 +36,31 @@ python3 -m http.server 8000
    sets this too, so it should populate on its own.
 5. Tick **Enforce HTTPS** once the certificate finishes provisioning.
 
-At your DNS provider, point the domain at GitHub:
+**Add the domain in GitHub before touching DNS.** Pointing DNS at GitHub
+while the domain is not yet claimed on a repo allows someone else to host a
+site on it.
 
-- Four `A` records for the apex `nkl.online` →
-  `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-- A `CNAME` record for `www` → `<your-username>.github.io`
+Then at your DNS provider, point the domain at GitHub:
 
-DNS can take up to a day to propagate.
+| Type | Host | Value |
+| --- | --- | --- |
+| `A` | `@` | `185.199.108.153` |
+| `A` | `@` | `185.199.109.153` |
+| `A` | `@` | `185.199.110.153` |
+| `A` | `@` | `185.199.111.153` |
+| `CNAME` | `www` | `<your-username>.github.io` |
+
+Optionally add `AAAA` records on `@` for IPv6: `2606:50c0:8000::153`,
+`2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`.
+
+Delete any default parking or redirect records the registrar created for
+`@` or `www` first — they will conflict.
+
+DNS can take up to 24 hours to propagate. Verify with:
+
+```sh
+dig nkl.online +noall +answer -t A
+```
 
 ## How it works
 
