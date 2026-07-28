@@ -1,0 +1,154 @@
+:root {
+  --ink: #111;
+  --bg: #fdfdfb;
+  --line: #111;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  /* The browser's own sans-serif, so there is nothing to download and
+     nothing to swap in after first paint. Everything inherits this. */
+  font-family: sans-serif;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* ---------- scattered are.na tile field ---------- */
+
+#tile-field {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  overflow: hidden;
+}
+
+.tile {
+  position: absolute;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  overflow: hidden;
+  opacity: 1;
+  /* Duration must stay in sync with FADE_MS in script.js. */
+  transition: opacity 0.6s ease;
+}
+
+/* Applied for one frame when a tile is added, then removed so the
+   tile fades up. Also used on its way out. */
+.tile.is-entering,
+.tile.is-leaving {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile {
+    transition: none;
+  }
+}
+
+.tile-inner {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------- info panel ---------- */
+
+.info-panel {
+  position: absolute;
+  bottom: 10vh;
+  left: 67%;
+  z-index: 10;
+  display: flex;
+  gap: 0;
+  max-width: 450px;
+  background: var(--bg);
+  padding: 1.5rem 2rem;
+  border: 8px solid var(--bg);
+}
+
+.site-nav {
+  display: none;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.site-nav a {
+  font-style: italic;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  text-decoration: underline;
+}
+
+.bio {
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* The name is no longer a separate element once the script rewrites
+   the bio, so it is styled to match the surrounding text and only
+   affects the static markup before first paint. */
+.bio .name {
+  font-weight: inherit;
+  font-size: inherit;
+  font-style: inherit;
+}
+
+.bio a {
+  color: inherit;
+}
+
+/* Fixed closing line, set on its own line after a hard return. */
+.bio-coda {
+  display: block;
+  margin-top: 1em;
+}
+
+@media (max-width: 800px) {
+  .info-panel {
+    position: static;
+    max-width: none;
+    padding: 1.5rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .site-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  #tile-field {
+    height: 60vh;
+    min-height: 420px;
+  }
+}

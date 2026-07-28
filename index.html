@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nick Larson</title>
+<meta name="description" content="Nick Larson — artist and designer, faculty member at Rhode Island School of Design teaching Art and Computation.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div id="tile-field" aria-hidden="true"></div>
+
+  <main class="info-panel">
+    <nav class="site-nav" aria-label="Primary">
+      <a href="https://nkl.gallery" target="_blank" rel="noopener">shop</a>
+      <a href="https://nkl.pics" target="_blank" rel="noopener">pics</a>
+      <a href="https://nkl.lol" target="_blank" rel="noopener">!</a>
+      <a href="https://www.instagram.com/nkl.nkl.nkl.nkl.nkl/" target="_blank" rel="noopener">ig</a>
+    </nav>
+
+    <!-- Matches one of the variants in script.js, so the text the
+         script swaps in on load is the same shape as what rendered
+         first. Kept in the markup rather than left empty so the bio is
+         still readable without JavaScript. -->
+    <p class="bio">
+      Nick Larson is an artist and designer working with recombination,
+      automation, and knowledge production. His practice holds signs and
+      symbols in productive ambiguity; tracing the tension between humanity
+      and technology, and the relationship between authorship and control.
+      He is a faculty member at Rhode Island School of Design, where he
+      teaches <a href="https://aac.risd.edu/" target="_blank" rel="noopener">Art
+      and Computation</a>. He is from Massachusetts, currently living and
+      working in Rhode Island.<span class="bio-coda">Follow him on <a
+      href="https://www.are.na/nick-larson/channels" target="_blank"
+      rel="noopener">are.na</a> or <a
+      href="https://www.instagram.com/nkl.nkl.nkl.nkl.nkl/" target="_blank"
+      rel="noopener">instagram</a>.</span>
+    </p>
+  </main>
+
+  <!-- defer keeps the 1.5MB RiTa bundle from blocking first paint.
+       Deferred scripts still run in order, so RiTa is ready before
+       script.js executes. -->
+  <script defer src="https://cdn.jsdelivr.net/npm/rita@3.2.16/dist/rita.min.js"></script>
+  <script defer src="script.js"></script>
+</body>
+</html>
