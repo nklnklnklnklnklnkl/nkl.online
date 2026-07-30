@@ -11,6 +11,9 @@
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- Without this, nkl.online and www.nkl.online are counted as two
+     separate pages in analytics. -->
+<link rel="canonical" href="https://nkl.online/">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -50,5 +53,12 @@
        script.js executes. -->
   <script defer src="https://cdn.jsdelivr.net/npm/rita@3.2.16/dist/rita.min.js"></script>
   <script defer src="script.js"></script>
+
+  <!-- GoatCounter analytics. No cookies, no personal data, so no consent
+       banner is required. Requests from localhost and private networks are
+       ignored automatically. To stop counting your own visits in a browser,
+       load https://nkl.online#toggle-goatcounter once. -->
+  <script data-goatcounter="https://nklnklnklnklnklnkl.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
